@@ -215,7 +215,7 @@ H. Zhu, K. V. Yuen, L. Mihaylova, and H. Leung. “Overview of Environment Perce
 
 * Waymo
 
-  * In 2016, after completing over 1,5 million miles, Google’s self-driving efforts became Waymo, a stand-alone subsidiary of Alphab et Inc. 
+  * In 2016, after completing over 1,5 million miles, Google’s self-driving efforts became Waymo, a stand-alone subsidiary of Alphabet Inc. 
 
 * NVIDIA‘s work
 
@@ -226,16 +226,90 @@ H. Zhu, K. V. Yuen, L. Mihaylova, and H. Leung. “Overview of Environment Perce
 
   * a fully-eletric delivery system designed to safely get packages to Amazon customers using autonomous delivery devices
 
-  
+# 3.Sensors
 
-  
+* cameras
+* wheel odometry
+* range sensors
+  * SONAR
+  * RADAR
+  * LiDAR
+
+
+
+sensors Tesla uses in advanced driver-assistance system Autopilot
+
+![image-20210218173213235](D:\ProgramData\notes\综述\Computer Vision for Autonomous Driving\images\image-20210218173213235.png)
 
 
 
 
 
+## Wheel odometry
+
+* Measurement：rotation of a wheel——estimate the distance covered by autonomous vehicle
+* shortage：does not provide the full vehicle pose(i.e., all six degress of freedom)
+* usage：combined with visual odometry or SLAM techniques
+
+## Range Sensors
+
+provide additional information about geometry and structure of the scene
+
+#### Ultrasonic sensors(SONAR)
+
+* mechanism:     emit hight-frequency sound waves and measture time for sound waves to travel to nearby objects
+
+#### RADAR
+
+* mechanism:     work with the same principle with SONAR but use electromagnetic waves
+
+#### LiDAR
+
+* mechanism:    work with the same principle with SONAR but use laser light pulse
+
+#### Comparison
+
+* RADAR has largest working distance because of its larger wavelength, but has lowest accuracy
+
+## Camera
+
+* advantage:
+  * cheap
+  * passive
+  * easy to deploy
+
+## Camera Model
+
+* components
+  * aperture（光圈）
+  * one or multiple lenses
+* mathematical model
+  * pinhole camera model
+* pinhole camera model
+  * principle point
+  * focal length
+  * ![image-20210218200220410](D:\ProgramData\notes\综述\Computer Vision for Autonomous Driving\images\image-20210218200220410.png)
+
+#### Omnidirectional Camera（广角相机，全景相机，非主流）
+
+* Intro.
+
+  Omnodirectional cameras allow to significantly increase the field of view by exploiting mirrors or special lenses. It provides a 360-degree field ov view and enhances coverage
+
+* types
+  * catadioptric camera（折反射相机）
+    * combine a standard camera with a shaped mirror, such as parabolic（抛物镜）, hyperbolic（双曲镜）, or elliptical mirror
+  * dioptric camera（屈光照相机）
+    * use purely dioptric fisheye lense
+  * polydioptric camera（多光学相机）
+    * use multiple cameras with overlapping field of view to provide a full spherical field of view
 
 
 
+![img](D:\ProgramData\notes\综述\Computer Vision for Autonomous Driving\images\watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poYW5nanVuaGl0,size_16,color_FFFFFF,t_70)
+
+* unified projection model
+  * a unifying theory for all central catadioptric system
+  * 
 
 ​	
