@@ -1,0 +1,12 @@
+![image-20210306200229435](D:\ProgramData\gitRepos\notebook\d2l\注意力\images\image-20210306200229435.png)
+
+* 主体分别通过nonvolitional cues 和 volitional cues来转移注意力。前者基于物体显著性，后者依赖任务
+* keys：nonvolitional cues，对应于显著的物体和感官，会影响人的选择
+* query：volitional cues，对应处于自主和认知的选择
+* values：对应环境的感官输入
+* Attention mechanisms bias selection over values (sensory inputs) via attention pooling, which incorporates queries (volitional cues) and keys (nonvolitional cues). Keys and values are paired.
+* 除上图外，还有许多注意力机制地设计，如通过强化学习方法训练的non-differentiable attention model 
+
+# 注意力可视化
+
+为可视化注意力权重，定义show_heatmaps函数，输入为 (number of rows for display, number of columns for display, number of queries, number of keys)矩阵

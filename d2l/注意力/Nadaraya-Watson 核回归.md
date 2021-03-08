@@ -1,6 +1,6 @@
 
 
-# 2.Attention Pool :  Nadaraya-Watson 核回归
+# Attention Pool :  Nadaraya-Watson 核回归
 
 queries(volitional cues)和keys(nonvolitional cues)相互作用导致attention pooling，attention pooling有选择地聚合一些values(sensory inputs)来产生输出
 
@@ -8,14 +8,14 @@ queries(volitional cues)和keys(nonvolitional cues)相互作用导致attention p
 
 **简单地从回归问题开始考虑，由${(x_1,y_1),...,(x_n,y_n)}$学习$\hat{y}=f(x)$**
 
-### 2.1 **Average Pooling**
+## 2.1 **Average Pooling**
 
 最”笨“地回归方法：使用average pooling对整个训练集输出进行平均
 $$
 f(x)=\frac{1}{n}\sum_{i=1}^{n}y_i\tag{1}
 $$
 
-### 2.2 **Nonparametric Attention Pooling**
+## 2.2 **Nonparametric Attention Pooling**
 
 显然，average pooling忽略了输入$x_i$，另一个方法是Nadaraya和Waston提出地根据输入位置对$y_i$进行加权
 $$
@@ -43,8 +43,26 @@ $$
 
 
 
-### 2.3 Parametric Attention Pooling
+## 2.3 Parametric Attention Pooling
 
 非参数的Nadaraya-Watson核回归具有一致性优势：**给定足够的数据，该模型收敛到最优解**
 
-然而，我们可以很容易地将
+然而，我们可以很容易地将**可学习地参数**融入attention pooling
+
+例如，与（5）不同的是，以下query $x$和key $x_i$之间的距离乘以可学习参数$w$：
+$$
+f(x)=\sum_{i=1}^{n}\alpha(x,x_i)y_y\\=\sum_{i=1}{n}\frac{exp(-\frac{1}{2}((x-x_i)w)^2)}{\sum_{j=1}^{n}exp(-\frac{1}{2}((x-x_i)w)^2)}y_i\\
+=\sum_{i=1}^{n}softmax(-\frac{1}{2}((x-x_i)w)^2)y_i\tag{6}
+$$
+通过训练模型学习（6）中的参数
+
+#### 2.3.1 批量矩阵乘法（Batch Matrix Multiplication）
+
+为了更高效计算小批量的注意力，我们可以利用深度学习框架提供的批量矩阵乘法工具。
+
+假设第一个批量包含$n$个大小$a \times b$的矩阵$\pmb{X_1},...,\pmb{X_n}$，和第二个小批量包含$n$个大小为$b \times c$的矩阵$\pmb{X_1Y_1},...,\pmb{X_nY_n}$。因此，给定两个形状分别为$(n,a,b)$和$(n,b,c)$的张量，它们批量乘法结果形状为$(n,a,c)$
+
+#### 2.3.2 定义模型
+
+基于参数化attention pooling的
+
